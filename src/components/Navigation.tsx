@@ -1,4 +1,4 @@
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { UserType } from '../types';
 
@@ -16,7 +16,7 @@ export default function Navigation({ isLoggedIn, handleLogout }: NavigationProps
                     Yoga Voyage
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="basic-navbar-nav" role="navigation">
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/">
                             Home

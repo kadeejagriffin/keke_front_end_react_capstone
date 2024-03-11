@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { RetreatType, UserType, CategoryType } from '../types';
 import { createRetreat, getRetreats } from '../lib/apiWrapper';
 import RetreatForm from './RetreatForm';

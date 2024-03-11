@@ -18,6 +18,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "main.tsx", "App.tsx"]
+  "include": ["src", "src/main.tsx", "src/App.tsx"]
 }
 
