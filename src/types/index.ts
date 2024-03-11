@@ -22,7 +22,6 @@ export type TokenType = {
     tokenExpiration: string
 }
 
-
 export type RetreatType = {
     id?: number;
     name: string;

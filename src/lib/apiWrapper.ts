@@ -159,9 +159,6 @@ async function deleteRetreatbyId(token:string, retreatId:string|number, ): Promi
     return { error, data}
 }
 
-
-
-
 export {
     register,
     login,
