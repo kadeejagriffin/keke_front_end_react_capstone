@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import Navigation from './components/Navigation';
-import Home from './views/Home';
-import About from './views/About';
-import Contact from './views/Contact';
-import SignUp from './views/SignUp';
-import Login from './views/Login';
-import AlertMessage from './components/AlertMessage';
-import RetreatsPage from './components/RetreatsPage';
-import EditRetreat from './views/EditRetreat';
-import { CategoryType, UserType, RetreatType } from './types';
-import { getMe, getRetreats } from './lib/apiWrapper';
+import Navigation from './src/components/Navigation';
+import Home from './src/views/Home';
+import About from './src/views/About';
+import Contact from './src/views/Contact';
+import SignUp from './src/views/SignUp';
+import Login from './src/views/Login';
+import AlertMessage from './src/components/AlertMessage';
+import RetreatsPage from './src/components/RetreatsPage';
+import EditRetreat from './src/views/EditRetreat';
+import { CategoryType, UserType, RetreatType } from './src/types';
+import { getMe, getRetreats } from './src/lib/apiWrapper';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!localStorage.getItem('token'));
