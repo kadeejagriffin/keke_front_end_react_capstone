@@ -1,43 +1,43 @@
 import { useState, useEffect } from 'react';
-import Navigation from './components/Navigation';
 import { Routes, Route } from 'react-router-dom';
-import Home from './views/Home'; 
+import { Container } from 'react-bootstrap';
+import Navigation from './components/Navigation';
+import Home from './views/Home';
 import About from './views/About';
 import Contact from './views/Contact';
 import SignUp from './views/SignUp';
 import Login from './views/Login';
-import { Container } from 'react-bootstrap';
 import AlertMessage from './components/AlertMessage';
-import { CategoryType, UserType, RetreatType } from './types';
-import { getMe } from './lib/apiWrapper';
-import { getRetreats } from './lib/apiWrapper';
-import RetreatsPage from './components/RetreatsPage'; 
+import RetreatsPage from './components/RetreatsPage';
 import EditRetreat from './views/EditRetreat';
-
+import { CategoryType, UserType, RetreatType } from './types';
+import { getMe, getRetreats } from './lib/apiWrapper';
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token') ? true : false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!localStorage.getItem('token'));
   const [loggedInUser, setLoggedInUser] = useState<UserType | null>(null);
   const [retreats, setRetreats] = useState<RetreatType[]>([]);
-
   const [message, setMessage] = useState<string | null>(null);
   const [category, setCategory] = useState<CategoryType | null>(null);
 
-  useEffect( () => {
-    async function getLoggedInUser(){
-        if (isLoggedIn){
-            const token = localStorage.getItem('token') as string
-            const response = await getMe(token)
-            if (response.data){
-                setLoggedInUser(response.data)
-            } else {
-                console.error(response.error)
-            }
+  useEffect(() => {
+    async function getLoggedInUser() {
+      try {
+        if (isLoggedIn) {
+          const token = localStorage.getItem('token') as string;
+          const response = await getMe(token);
+          if (response.data) {
+            setLoggedInUser(response.data);
+          } else {
+            throw new Error(response.error || 'Failed to fetch user data');
+          }
         }
+      } catch (error) {
+        console.error('Error fetching logged-in user:', error);
+      }
     }
     getLoggedInUser();
-}, [isLoggedIn] )
-
+  }, [isLoggedIn]);
 
   useEffect(() => {
     async function fetchRetreats() {
@@ -56,7 +56,6 @@ export default function App() {
     fetchRetreats();
   }, []);
 
-
   const logUserIn = (user: UserType) => {
     setIsLoggedIn(true);
     setLoggedInUser(user);
@@ -65,7 +64,6 @@ export default function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setLoggedInUser(null);
-    localStorage.removeItem('token');
     localStorage.removeItem('token');
     flashMessage("Peace, we'll see you next time!", 'success');
   };
@@ -87,11 +85,9 @@ export default function App() {
           <Route path="/signup" element={<SignUp flashMessage={flashMessage} />} />
           <Route path="/login" element={<Login flashMessage={flashMessage} logUserIn={logUserIn} />} />
           <Route path="/retreats" element={<RetreatsPage isLoggedIn={isLoggedIn} currentUser={loggedInUser} flashMessage={flashMessage} />} />
-          <Route path='/edit/:retreatId' element={<EditRetreat flashMessage={flashMessage} />} />
-          </Routes>
+          <Route path="/edit/:retreatId" element={<EditRetreat flashMessage={flashMessage} />} />
+        </Routes>
       </Container>
     </div>
   );
 }
-
-
