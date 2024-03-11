@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App.tsx'; // Assuming this is your main App component
+import App from './App.tsx'; 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import './main.css';
 
