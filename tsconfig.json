@@ -7,17 +7,17 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "Node",
-    "allowImportingTsExtensions": true,
+    // "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false, // Changed to allow emitting JavaScript files
     "jsx": "react-jsx",
-    "forceConsistentCasingInFileNames": true, // Enable consistent casing
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"]
 }
+
